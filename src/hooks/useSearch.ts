@@ -1,5 +1,3 @@
-// src/hooks/useSearch.ts
-
 import { useState } from "react";
 
 const useSearch = (
@@ -7,23 +5,26 @@ const useSearch = (
   searchKeys: string[],
 ) => {
   const [filteredData, setFilteredData] = useState(initialData);
+  const [query, setQuery] = useState(""); // Track the search query
 
-  const handleSearch = (query: string) => {
-    if (!query) {
+  const handleSearch = (searchQuery: string) => {
+    setQuery(searchQuery); // Update the query state
+
+    if (!searchQuery) {
       setFilteredData(initialData);
       return;
     }
 
-    const lowercasedQuery = query.toLowerCase();
+    const lowercasedQuery = searchQuery.toLowerCase();
     const filtered = initialData.filter((item) =>
       searchKeys.some((key) =>
-        item[key].toString().toLowerCase().includes(lowercasedQuery),
+        item[key]?.toString().toLowerCase().includes(lowercasedQuery),
       ),
     );
     setFilteredData(filtered);
   };
 
-  return { filteredData, handleSearch };
+  return { filteredData, handleSearch, query }; // Return query so it can be checked elsewhere
 };
 
 export default useSearch;

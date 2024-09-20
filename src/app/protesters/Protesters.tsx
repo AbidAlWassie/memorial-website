@@ -11,7 +11,7 @@ const Protesters = () => {
   const [data, setData] = useState([]); // Data from the API
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { filteredData, handleSearch } = useSearch(data, [
+  const { filteredData, handleSearch, query } = useSearch(data, [
     "name",
     "status",
     "age",
@@ -27,7 +27,7 @@ const Protesters = () => {
         }
         const result = await response.json();
 
-        // Format data to include calculated age
+        // Format data to include calculated age and formatted deathdate
         const formattedData = result.map((person: any) => ({
           ...person,
           age: person.birthdate ? calculateAge(person.birthdate) : "Unknown",
@@ -61,7 +61,7 @@ const Protesters = () => {
     <div>
       <DataTable
         columns={columns}
-        data={filteredData} // Pass raw data to DataTable
+        data={query ? filteredData : data} // Show filteredData if a search query exists
         onSearch={handleSearch}
         onFilterChange={handleFilterChange}
         filters={filters}
