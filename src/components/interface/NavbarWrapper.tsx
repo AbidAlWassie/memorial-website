@@ -33,7 +33,7 @@ export default function NavbarWrapper({ session }: { session: any }) {
         { label: "Home", href: "/" },
         { label: "Protesters", href: "/protesters" },
         { label: "Contribute", href: "/contribute" },
-        { label: "Contact", href: "/about" },
+        { label: "Person", href: "/person" },
       ]}
       userMenuItems={userMenuItems}
       showSearchBar={true}
