@@ -1,6 +1,5 @@
-// src/app/api/createPerson/route.ts
-
 import prisma from "@/lib/db";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -18,6 +17,10 @@ export async function POST(req: Request) {
         hometown,
       },
     });
+
+    // Revalidate the list of persons to ensure the cache updates
+    revalidatePath("/protesters");
+    revalidatePath("/api/getPerson");
 
     return NextResponse.json(
       { message: "Person created successfully" },
