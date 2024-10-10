@@ -18,7 +18,7 @@ export async function POST(req: Request) {
       },
     });
 
-    // Revalidate the list of persons to ensure the cache updates
+    // Revalidate the data to update the cache
     revalidatePath("/protesters");
     revalidatePath("/api/getPerson");
 
