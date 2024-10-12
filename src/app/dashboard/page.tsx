@@ -1,8 +1,8 @@
-// src/app/contribute/page.tsx
+// src/app/dashboard/page.tsx
 import SessionWrapper from "@/components/client/SessionWrapper";
 import Dashboard from "./dashboard";
 
-export default async function ContributePage() {
+export default async function DashboardPage() {
   // await new Promise((resolve) => setTimeout(resolve, 2000));
 
   return (

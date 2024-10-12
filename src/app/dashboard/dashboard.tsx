@@ -1,5 +1,6 @@
 "use client";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 async function fetchPosts() {
@@ -61,7 +62,12 @@ export default function Dashboard() {
                 key={post.id}
                 className="rounded-md border border-gray-700 p-4"
               >
-                <h3 className="mb-2 text-3xl font-semibold">{post.title}</h3>
+                <div className="flex">
+                  <h3 className="mb-2 text-3xl font-semibold">{post.title}</h3>
+                  <div className="ml-auto">
+                    <Link href={`editPost/${post.id}`}>Edit</Link>
+                  </div>
+                </div>
                 <p className="text-sm text-gray-400">
                   By{" "}
                   <span className="cursor-pointer text-blue-400">
