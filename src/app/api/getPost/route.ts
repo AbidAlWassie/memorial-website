@@ -9,6 +9,9 @@ export async function GET() {
       include: {
         user: true, // Include related user data
       },
+      orderBy: {
+        createdAt: "desc", // Sorting posts from latest to oldest
+      },
     });
 
     return NextResponse.json(posts, {
