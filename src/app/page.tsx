@@ -1,5 +1,7 @@
 // src/app/page.tsx
 
+import Link from "next/link";
+
 async function fetchPosts() {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const response = await fetch(`${baseUrl}/api/getPost`, {
@@ -31,9 +33,12 @@ export default async function Main() {
 
                 <p className="text-sm text-gray-400">
                   By{" "}
-                  <span className="cursor-pointer text-blue-400">
+                  <Link
+                    href={`user/${post.user?.id}` || "Unknown"}
+                    className="cursor-pointer text-blue-400"
+                  >
                     {post.user?.name || "Unknown"}
-                  </span>
+                  </Link>
                 </p>
                 {/* <hr className="mb-2 mt-4 h-px border-0 bg-gray-200 dark:bg-gray-700" /> */}
                 <hr className="mb-6 mt-2 h-px border-0 bg-gray-200 dark:bg-gray-700" />
